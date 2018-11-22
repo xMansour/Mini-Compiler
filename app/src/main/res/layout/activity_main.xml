@@ -1,0 +1,92 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/github_dark_white">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/github_dark_white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewLineNumbers"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@color/sidebar"
+                android:fontFamily="monospace"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/github_black"
+                android:text="1"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextCode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:fontFamily="monospace"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:textColor="@color/github_black" />
+
+        </LinearLayout>
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/multiple_actions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            fab:fab_addButtonColorNormal="@color/github_white"
+            fab:fab_addButtonColorPressed="@color/github_dark_white"
+            fab:fab_addButtonPlusIconColor="@color/github_black"
+            fab:fab_labelStyle="@style/FabMenuStyle">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnFabRun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/github_white"
+                fab:fab_colorPressed="@color/github_dark_white"
+                fab:fab_icon="@drawable/ic_play_arrow_black_24dp"
+                fab:fab_size="mini"
+                fab:fab_title="Run"/>
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnFabSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/github_white"
+                fab:fab_colorPressed="@color/github_dark_white"
+                fab:fab_icon="@drawable/ic_save_black_24dp"
+                fab:fab_size="mini"
+                fab:fab_title="Save File"/>
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnFabOpen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/github_white"
+                fab:fab_colorPressed="@color/github_dark_white"
+                fab:fab_icon="@drawable/ic_insert_drive_file_black_24dp"
+                fab:fab_size="mini"
+                fab:fab_title="Open File" />
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+
+    </RelativeLayout>
+</ScrollView>
