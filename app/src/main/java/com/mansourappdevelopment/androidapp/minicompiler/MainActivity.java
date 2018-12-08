@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 Scanner scanner = new Scanner(mEditTextCode.getText().toString(), mLineNumber, MainActivity.this, v);
                 scanner.separateLines();
                 scanner.separateExpressions();
-
+                scanner.validateExpressions();
+                scanner.printTokens();
             }
         });
     }
@@ -63,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
     private void fillLineNumberSideBar() {
         int lines = mEditTextCode.getLineCount();
         String lineText = "";
+
         for (int i = 1; i <= lines; i++) {
+
             lineText = lineText + i + "\n";
             mLineNumber = i;
         }
