@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private TextView mTextViewLineNumbers;
     private EditText mEditTextCode;
@@ -56,7 +59,11 @@ public class MainActivity extends AppCompatActivity {
                 scanner.separateLines();
                 scanner.separateExpressions();
                 scanner.validateExpressions();
-                scanner.printTokens();
+                //scanner.printTokens();
+                List<HashMap> mTokens = scanner.getmTokens();
+                Parser parser = new Parser(mTokens, v);
+                parser.parse();
+                //parser.printTree();
             }
         });
     }

@@ -34,6 +34,7 @@ public class Scanner {
         mLanguage = new ArrayList<>();
 
         HashMap number = new HashMap();
+        HashMap floatNumber = new HashMap();
         HashMap mul = new HashMap();
         HashMap div = new HashMap();
         HashMap sum = new HashMap();
@@ -41,10 +42,17 @@ public class Scanner {
         HashMap id = new HashMap();
         HashMap integer = new HashMap();
         HashMap decimal = new HashMap();
+        HashMap assignment = new HashMap();
+        HashMap conditionalStatement = new HashMap();
+        HashMap specialCharacters = new HashMap();
 
         number.put("type", "number");
         number.put("regex", "\\d+");
         mLanguage.add(number);
+
+        floatNumber.put("type", "float number");
+        floatNumber.put("regex", "\\d*(\\.\\d+)");
+        mLanguage.add(floatNumber);
 
         mul.put("type", "operation");
         mul.put("regex", "\\bmul\\b");
@@ -62,9 +70,30 @@ public class Scanner {
         sub.put("regex", "\\bsub\\b");
         mLanguage.add(sub);
 
+        assignment.put("type", "assignment");
+        assignment.put("regex", "\\beql\\b");
+        mLanguage.add(assignment);
+
+        conditionalStatement.put("type", "conditional statement");
+        conditionalStatement.put("regex", "\\bif\\b");
+        mLanguage.add(conditionalStatement);
+
+        specialCharacters.put("type", "special character");
+        specialCharacters.put("regex", "[^\\w\\s]");
+        mLanguage.add(specialCharacters);
+
+        integer.put("type", "data type");
+        integer.put("regex", "\\bint\\b");
+        mLanguage.add(integer);
+
+        decimal.put("type", "data type");
+        decimal.put("regex", "\\bdecimal\\b");
+        mLanguage.add(decimal);
+
         id.put("type", "identifier");
         id.put("regex", "([a-zA-Z]|_)([a-zA-Z]+|[0-9]+|_+)*");
         mLanguage.add(id);
+
 
     }
 
@@ -92,8 +121,8 @@ public class Scanner {
             mToken = new HashMap();
             String expressionType = getExpressionType(expression);
 
-            mToken.put("expression type", expressionType);
-            mToken.put("expression value", expression);
+            mToken.put("type", expressionType);
+            mToken.put("value", expression);
             mTokens.add(mToken);
         }
     }
@@ -103,17 +132,13 @@ public class Scanner {
         for (HashMap word : mLanguage) {
 
             if (expression.matches(word.get("regex").toString())) {
-
-                if (expression.equals("int") || expression.equals("float"))
-                    return "data type";
-                else
-                    return word.get("type").toString();
+                return word.get("type").toString();
 
             }
 
         }
 
-        return "UNKNOWN";
+        return "Undefined Expression";
 
     }
 
@@ -123,10 +148,14 @@ public class Scanner {
 
         for (HashMap token : mTokens) {
 
-            scannerOutput.append("<" + token.get("expression type") + ", " + token.get("expression value") + ">" + " ");
+            scannerOutput.append("<" + token.get("type") + ", " + token.get("value") + ">" + " ");
         }
 
         Snackbar.make(mView, scannerOutput, 10000).show();
+    }
+
+    public List<HashMap> getmTokens() {
+        return mTokens;
     }
 }
 
